@@ -114,7 +114,7 @@ class ClipImageVC: UIViewController {
     func clipImage() -> UIImage? {
         let offset = scrollView.contentOffset
         let imageSize = imageView.image?.size
-        let scale = (imageView.frame.size.width) / (imageSize?.width)!
+        let scale = (imageView.frame.size.width) / (imageSize?.width)! / image.scale
         
         let clipRectX = (ScreenWidth - clipRectWidth) / 2.0
         let clipRectY = (ScreenHeight - clipRectWidth) / 2.0
