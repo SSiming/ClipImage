@@ -34,9 +34,9 @@ class ViewController: UIViewController {
     
     // MARK: - Action
     @IBAction func chooseImageButtonAction(_ sender: UIButton) {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let imagePickerVC = UIImagePickerController.init()
-            imagePickerVC.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            imagePickerVC.sourceType = .photoLibrary
             imagePickerVC.delegate = self
             present(imagePickerVC, animated: true, completion: nil)
         }
@@ -46,12 +46,12 @@ class ViewController: UIViewController {
 
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         
         let vc = ClipImageVC.init()
         vc.delegate = self
-        vc.image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        vc.image = info[.originalImage] as? UIImage
         navigationController?.pushViewController(vc, animated: true)
     }
     

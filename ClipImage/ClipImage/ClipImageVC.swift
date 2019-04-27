@@ -48,7 +48,7 @@ class ClipImageVC: UIViewController {
         path.append(ovalPath)
         
         let shaperLayer = CAShapeLayer.init()
-        shaperLayer.fillRule = kCAFillRuleEvenOdd
+        shaperLayer.fillRule = .evenOdd
         shaperLayer.path = path.cgPath
         shaperLayer.fillColor = UIColor.black.withAlphaComponent(0.5).cgColor
         
@@ -66,9 +66,9 @@ class ClipImageVC: UIViewController {
         
         let confirmButton = UIButton.init(frame: CGRect.init(x: 20, y: 10, width: ScreenWidth - 40, height: 40))
         confirmButton.backgroundColor = UIColor.black
-        confirmButton.setTitle("Confirm", for: UIControlState.normal)
+        confirmButton.setTitle("Confirm", for: .normal)
         confirmButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        confirmButton.addTarget(self, action: #selector(ClipImageVC.confirmButtonAction(_:)), for: UIControlEvents.touchUpInside)
+        confirmButton.addTarget(self, action: #selector(ClipImageVC.confirmButtonAction(_:)), for: .touchUpInside)
         bottomView.addSubview(confirmButton)
         
         scrollView = UIScrollView.init(frame: view.bounds)
@@ -103,7 +103,7 @@ class ClipImageVC: UIViewController {
     }
     
     // MARK: - Action
-    func confirmButtonAction(_ button: UIButton) {
+    @objc func confirmButtonAction(_ button: UIButton) {
         let image = clipImage()
         delegate?.clipImageVC(self, didFinishClipingImage: image!)
         navigationController?.popViewController(animated: true)
